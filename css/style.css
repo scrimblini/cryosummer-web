@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fugaz+One&family=Quantico:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    background-color: black;
+}
+
+h1, h2, h3 {
+    font-family: "Fugaz One", serif;
+}
+p, .navbar-nav {
+    font-family: "Quantico", serif;
+}
+
+
+
+.navbar-nav {
+    margin:0 auto;
+}
+
+
+.cont-adapt {
+    width:100%;
+    background-color: rgb(20, 18, 74);
+}
+
+
+.content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) translateY(20px);
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+    color: white;
+    text-shadow: 2px 2px 2px black;
+    font-size: 1.5rem;
+    opacity: 0;
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+
+.content[data-active="true"] {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateY(0);
+}
+
+.section {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+
+
+
+@media only screen and (max-width:768px){
+    .cont-adapt, .content {
+        max-width: 500px;
+        margin:0 auto;
+    }
+
+    .content {
+        padding:20px;
+    }
+
+}
