@@ -20,7 +20,9 @@ p, .navbar-nav {
     font-family: "Quantico", serif;
 }
 
-
+.navbar {
+    background-image: linear-gradient(rgba(0,0,0,1),rgba(0,0,0,0));
+}
 
 .navbar-nav {
     margin:0 auto;
@@ -62,6 +64,59 @@ p, .navbar-nav {
     color: white;
 }
 
+.sectionbgmain {
+    background-image: url(../img/bginwsparkle.png);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.charoverlmain {
+    width:100%;
+    height:100%;
+    background-image: url(../img/overlaying.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    position:absolute;
+    top:0;
+    
+}
+
+
+
+.itembtn {
+    width:300px;
+}
+
+.tinythumb {
+    width:100px;
+}
+
+.carousel-item {
+    text-align: center;
+}
+
+.carousel-item img {
+    max-width:500px;
+}
+
+.contregular {
+    width:100%;
+}
+
+.newsbox {
+    max-width:800px;
+    height:300px;
+    overflow-x:hidden;
+    overflow-y:scroll;
+    background-color: #8e93ec;
+    margin:0 auto;
+}
+
+.toptitle {
+    color:#dfe7ef;
+    margin:50px 0;
+
+}
 
 
 
@@ -71,8 +126,26 @@ p, .navbar-nav {
         margin:0 auto;
     }
 
+    .charoverlmain{
+        display: none;
+    }
+
+
+    #myCarousel {
+        width: 100%;
+    }
+    .carousel-item img {
+        width:100%;
+    }
+
+    .newsbox {
+        height:auto;
+        overflow-y:hidden;
+    }
+
     .content {
         padding:20px;
     }
+
 
 }
