@@ -1,3 +1,4 @@
+//index page effect
 document.addEventListener("DOMContentLoaded", () => {
             const sections = document.querySelectorAll(".section");
             const contents = document.querySelectorAll(".content");

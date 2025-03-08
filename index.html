@@ -18,19 +18,19 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="index.html">Home</a></li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="char.html">Characters</a></li>
+                        <a class="nav-link" aria-current="page" href="char/index.html">Characters</a></li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="news.html">News</a></li>
+                        <a class="nav-link" aria-current="page" href="vn/index.html">Demo</a></li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="demo.html">Demo</a></li>
+                        <a class="nav-link" aria-current="page" href="gallery/index.html">Gallery</a></li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="gallery.html">Gallery</a></li>
+                        <a class="nav-link" aria-current="page" href="news/index.html">News</a></li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="about.html">About</a></li>
+                        <a class="nav-link" aria-current="page" href="shop/index.html">Shop</a></li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="shop.html">Shop</a></li>
+                        <a class="nav-link" aria-current="page" href="socials/index.html">Socials</a></li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="newsl.html">Contact us</a></li>
+                        <a class="nav-link" aria-current="page" href="contact/index.html">Contact us</a></li>
                 </ul>
             </div>
         </div>
@@ -44,14 +44,17 @@
     <div class="content" data-section="2">
         <h1>Immerse yourself in an extraordinary experience</h1>
         <p>Our protagonist, Bozo, carries an unexplicable guilt. Follow them on an intriguing journey to uncover their past. <b>Will their allies remain by their side or will the truth drive them away?</b></p>
+        <a href="char/index.html">MEET THEM NOW</a>
     </div>
     <div class="content" data-section="3">
-        <h1>Unveiling mysteries of the cosmos</h1>
+        <h1>Unveil the mysteries of the cosmos</h1>
         <p>As the path reveals itself to you, you will uncover a myriad of cosmic secrets leading to an undeniable truth about your very existence. <b>Are you sure you can handle this truth?</b></p>
+        <a href="demo/index.html">TRY BROWSER DEMO</a>
     </div>
     <div class="content" data-section="4">
         <h1>Choose</h1>
-        <p>restore the peace in a distant time where reality falls apart, or resign to your true nature and see what consequences it brings about. <b>its <i>your</i> choice.</b></p>
+        <p>restore the peace in a distant time where reality falls apart, or resign to your true nature and the consequences you were predestined to face. <b>its <i>your</i> choice.</b>
+        <br><b>COMING SOON</b></p>
     </div>
 
     <div class="charoverlmain"></div>
@@ -63,28 +66,10 @@
 
     </div>
 
-
+<footer class="p-4 d-flex justify-content-center">Copyright &#169;<script>document.write(new Date().getFullYear());</script> CryoSummer | Get to know more about who<a href="about/index.html"> made this</a></footer>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const sections = document.querySelectorAll(".section");
-            const contents = document.querySelectorAll(".content");
-            
-            const observer = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        let sectionId = entry.target.getAttribute("data-section");
-                        contents.forEach(content => {
-                            content.setAttribute("data-active", content.getAttribute("data-section") === sectionId ? "true" : "false");
-                        });
-                    }
-                });
-            }, { threshold: 0.6 });
-            
-            sections.forEach(section => observer.observe(section));
-        });
-    </script>
+    <script src="js/func.js"></script>
 </body>
 </html>

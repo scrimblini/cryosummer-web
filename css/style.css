@@ -11,12 +11,27 @@ body, html {
     scroll-behavior: smooth;
     overflow-x: hidden;
     background-color: black;
+    color:#dfe7ef
+}
+
+a {
+    text-decoration: none;
+    color:#dfe7ef;
+}
+
+a:hover {
+    background-color: #3194fc;
+    transition:0.5s;
+}
+a:active, .nav-link:active {
+    background-color: #ffff01;
+    color:black;
 }
 
 h1, h2, h3 {
     font-family: "Fugaz One", serif;
 }
-p, .navbar-nav {
+p, .navbar-nav, footer {
     font-family: "Quantico", serif;
 }
 
@@ -32,6 +47,7 @@ p, .navbar-nav {
 .cont-adapt {
     width:100%;
     background-color: rgb(20, 18, 74);
+    padding:80px 0;
 }
 
 
@@ -88,7 +104,7 @@ p, .navbar-nav {
 }
 
 .tinythumb {
-    width:100px;
+    max-width:100px;
 }
 
 .carousel-item {
@@ -103,6 +119,22 @@ p, .navbar-nav {
     width:100%;
 }
 
+.smallbox {
+    display: flex;
+    margin:0 auto;
+    background-color: black;
+    color:white;
+    align-items: center;
+    justify-content: center;
+    max-width: 800px;
+    min-width:700px;
+}
+
+.smallbox img {
+    max-width:300px;
+}
+
+
 .newsbox {
     max-width:800px;
     height:300px;
@@ -115,7 +147,136 @@ p, .navbar-nav {
 .toptitle {
     color:#dfe7ef;
     margin:50px 0;
+    position:relative;
+    top: 40px;
 
+}
+
+
+.gallery-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    max-width: 800px;
+    height:600px;
+    margin: auto;
+}
+.main-image {
+    width: 100%;
+    max-height: 600px;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+.main-image:hover {
+    transform: scale(1.02);
+}
+.thumb {
+    width: 100px;
+    height: 70px;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border 0.2s ease-in-out;
+}
+.thumb:hover, .thumb.active {
+    border: 2px solid #3194fc
+
+    ;
+}
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: auto;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    color: white;
+    font-size: 24px;
+    z-index: 2;
+}
+.carousel-control-prev {
+    left: 10px;
+}
+.carousel-control-next {
+    right: 10px;
+}
+
+
+.fullscreen-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.fullscreen-image {
+    max-width: 90%;
+    max-height: 90%;
+    cursor:-webkit-zoom-in;
+}
+.close-btn {
+    width:50px;
+    position: absolute;
+    top: 40px;
+    right: 20px;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.zoomed {
+    transform: scale(2);
+    cursor: zoom-out;
+}
+
+.buttondiv {
+    width:800px;
+    margin: 0 auto;
+}
+
+.buttondiv h3 {
+    padding:20px;
+}
+
+.btnsoc img {
+    max-width:100px;
+    margin:50px;
+}
+
+
+
+
+
+.windowcontent {
+    position: relative;
+    background-color: white;
+    color:black;
+    padding: 20px;
+    width: 100%;
+    max-width: 700px;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+
+footer a {
+    margin-left: 5px;
+    color: #3194fc;
+}
+
+footer a:hover {
+    color: black;
 }
 
 
@@ -136,6 +297,31 @@ p, .navbar-nav {
     }
     .carousel-item img {
         width:100%;
+    }
+
+
+    .buttondiv {
+        max-width:250px;
+    }
+    .btnsoc img {
+        width:60px;
+        margin:10px;
+    }
+
+    .smallbox {
+        flex-wrap: wrap;
+        flex-direction: column;
+        max-width: 400px;
+        min-width: 0;
+    }
+
+    .smallbox .descbox {
+        max-width: 200px;
+    }
+
+    .smallbox img {
+        max-width: 300px;
+        text-align: center;
     }
 
     .newsbox {
