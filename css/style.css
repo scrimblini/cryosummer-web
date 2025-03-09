@@ -26,6 +26,7 @@ button:hover {
 }
 
 
+
 a {
     text-decoration: none;
     color:#dfe7ef;
@@ -129,6 +130,7 @@ p, .navbar-nav, form, footer, #game-container {
 
 
 .normalbox {
+    width:600px;
     margin:0 auto;
     background-color: black;
     color:white;
@@ -268,6 +270,10 @@ p, .navbar-nav, form, footer, #game-container {
     flex-direction: row;
 }
 
+
+.checkboxSection {
+    display: none;
+}
 
 
 
@@ -419,6 +425,15 @@ footer a:hover {
     .btnsoc img {
         width:60px;
         margin:10px;
+    }
+
+    .normalbox {
+        width:auto;
+    }
+
+    #positive, #negative, .checkbox {
+        width:20px;
+        height:20px;
     }
 
 

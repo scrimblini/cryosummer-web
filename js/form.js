@@ -1,10 +1,37 @@
 //contact form
 
-document.getElementById('newslform').addEventListener('submit', function(event) {
+document.addEventListener("DOMContentLoaded", function () {
+  const positiveRadio = document.getElementById("positive");
+  const negativeRadio = document.getElementById("negative");
+  const checkboxSection = document.getElementById("checkboxSection");
+  const subjectInput = document.getElementById("subject");
+
+  //positive radio hides checkboxes while negative radio unhides them. both affect the subject input
+  function updateForm() {
+      if (positiveRadio.checked) {
+          checkboxSection.style.display = "none";
+          subjectInput.value = "Positive Feedback";
+      } else if (negativeRadio.checked) {
+          checkboxSection.style.display = "block";
+          subjectInput.value = "Negative Feedback";
+      }
+  }
+
+  // Run on page load (to set initial state)
+  updateForm();
+
+  positiveRadio.addEventListener("change", updateForm);
+  negativeRadio.addEventListener("change", updateForm);
+});
+
+
+//prevents default event of submit button
+document.getElementById('formthing').addEventListener('submit', function(event) {
     event.preventDefault();
     submitData();
   });
   
+  //and validates the input
   function submitData() {
     const name = document.getElementById("name").value.trim();
     const email = document.getElementById("email").value.trim();

@@ -100,7 +100,10 @@ function restartGame() {
         let isTyping = false;
         
 
-
+//callbacks: are important because they ensure any additional logic can be executed when the text typing effect finishes
+//they are important to distinguish:
+//clicking while its still typing (text appears instantly) vs clicking after its finished (changes to the next scene)
+//timeouts are for the text typing speed
 function typeText(text, callback) {
     let box = document.getElementById("text-box");
     box.innerHTML = "";
