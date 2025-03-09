@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <style>
 body {
     text-align: center;
@@ -24,24 +24,7 @@ button {
     cursor: pointer;
 }
 
-#vn-container {
-    width: 600px;
-    height: 400px;
-    background: lightgray;
-    position: relative;
-    overflow: hidden;
-    text-align: center;
-    cursor: pointer;
-    margin: auto;
-}
 
-#sprite {
-    width: 200px;
-    position: absolute;
-    bottom: 100px;
-    left: 50%;
-    transform: translateX(-50%);
-}
 
 #text-box {
     width: 100%;
@@ -58,8 +41,6 @@ button {
 
 #restart-screen {
     position: fixed;
-    width: 100vw;
-    height: 100vh;
     background: black;
     color: white;
     flex-direction: column;
@@ -83,21 +64,21 @@ button {
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="index.html">Home</a></li>
+                        <a class="nav-link" aria-current="page" href="../index.html">Home</a></li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="char.html">Characters</a></li>
+                        <a class="nav-link" aria-current="page" href="../char/index.html">Characters</a></li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="demo.html">Demo</a></li>
+                        <a class="nav-link active" aria-current="page" href="index.html">Demo</a></li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="gallery.html">Gallery</a></li>
+                        <a class="nav-link" aria-current="page" href="../gallery/index.html">Gallery</a></li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="news.html">News</a></li>
+                        <a class="nav-link" aria-current="page" href="../news/index.html">News</a></li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="shop.html">Shop</a></li>
+                        <a class="nav-link" aria-current="page" href="../shop/index.html">Shop</a></li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="about.html">About</a></li>
+                        <a class="nav-link" aria-current="page" href="../socials/index.html">Socials</a></li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="newsl.html">Contact us</a></li>
+                        <a class="nav-link" aria-current="page" href="index.html">Contact us</a></li>
                 </ul>
             </div>
         </div>
@@ -106,7 +87,7 @@ button {
 
     <div class="cont-adapt">
         <div id="main-menu">
-            <h1>Visual Novel</h1>
+            <h1>Cryogenic Summer</h1>
             <button id="start-btn">Start</button>
             <button id="load-btn">Load</button>
         </div>
@@ -150,10 +131,10 @@ button {
     <script src="js/func.js"></script>
     <script>
     const scenes = [
-    { text: "Hello, welcome to the story!", sprite: "", background: "bg1.jpg" },
-    { text: "This is a visual novel demo.", sprite: "character1.png", background: "" }, // Keeps previous background
-    { text: "Click again to continue.", sprite: "character2.png", background: "bg2.jpg" },
-    { text: "End of demo!", sprite: "", background: "" }
+    { text: "Hello, welcome to the story!", sprite: "../img/vnsprites/boznormal-wireup.png", background: "../img/vnsprites/bglab.png" },
+    { text: "This is a visual novel demo.", sprite: "../img/vnsprites/bozconfused-wiredown.png", background: "" }, // Keeps previous background
+    { text: "Click again to continue.", sprite: "../img/vnsprites/bozserious-wiredown.png", background: "../img/vnsprites/bgoutside.png" },
+    { text: "End of demo!", sprite: "../img/vnsprites/empty.png", background: "" }
 ];
 
 let currentScene = 0;
@@ -290,10 +271,10 @@ mainMenuButton.addEventListener("click", () => {
             currentBackground = scene.background;
             vnBox.style.backgroundImage = `url(${currentBackground})`;
         }
-/*
+
         if (scene.sprite) {
             currentSprite = scene.sprite;
-        }*/ //maybe i will need this
+        }
     }
 }
     

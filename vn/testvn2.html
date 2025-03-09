@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual Novel Box</title>
+    <style>
+        body { display: flex; justify-content: center; align-items: center; height: 100vh; background: black; margin: 0; }
+        #game-container { width: 640px; height: 480px; background: white; position: relative; overflow: hidden; border: 3px solid black; }
+        #background { width: 100%; height: 100%; position: absolute; }
+        #sprite { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); max-height: 80%; }
+        #text-box { position: absolute; bottom: 0; width: 100%; background: rgba(0, 0, 0, 0.8); color: white; padding: 10px; font-size: 18px; }
+        #menu { display: flex; justify-content: space-between; background: gray; padding: 5px; }
+        .hidden { display: none !important; }
+        #exit-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.overlay-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+    </style>
+</head>
+<body>
+
+    <div id="game-container">
+        <img id="background" src="" class="hidden">
+        <img id="sprite" src="" class="hidden">
+        <div id="text-box" class="hidden"></div>
+        <div id="start-screen">
+            <button onclick="startGame()">Start</button>
+            <button onclick="promptLoadGame()">Load Game</button>
+        </div>
+    </div>
+
+    <div id="menu" class="hidden">
+        <button onclick="promptSaveGame()">Save</button>
+        <button onclick="promptLoadGame()">Load</button>
+        <button onclick="exitGame()">Exit</button>
+    </div>
+
+    <div id="exit-overlay" class="hidden">
+        <div class="overlay-content">
+            <p>Do you want to save before exiting?</p>
+            <button onclick="saveGame(1); exitToStartScreen();">Save & Exit</button>
+            <button onclick="exitToStartScreen();">Exit Without Saving</button>
+            <button onclick="closeExitOverlay();">Cancel</button>
+        </div>
+    </div>
+
+    <!-- This div is hidden by default and will be displayed after the game finishes -->
+<div id="finish-buttons" class="hidden">
+    <button onclick="startGame()">Restart</button>
+    <button onclick="exitToStartScreen()">Exit</button>
+</div>
+
+
+<div id="save-overlay" class="hidden">
+    <h3>Choose a slot to save</h3>
+    <button onclick="saveGame(1)">Save to Slot 1</button>
+    <button onclick="saveGame(2)">Save to Slot 2</button>
+    <button onclick="saveGame(3)">Save to Slot 3</button>
+    <br>
+    <p id="save-message"></p> <!-- Message showing save status -->
+    <button onclick="closeSaveOverlay()">Close</button>
+</div>
+
+<!-- Load Overlay -->
+<div id="load-overlay" class="hidden">
+    <h3>Choose a slot to load</h3>
+    <button onclick="loadGame(1)">Load from Slot 1</button>
+    <button onclick="loadGame(2)">Load from Slot 2</button>
+    <button onclick="loadGame(3)">Load from Slot 3</button>
+    <br>
+    <button onclick="closeLoadOverlay()">Close</button>
+</div>
+
+    
+
+    <script>
+        let scenes = [
+            { bg: "bg1.jpg", sprite: "char1.png", text: "Hello! Welcome to this story." },
+            { text: "This is an example of a scene with gradual text." },
+            { bg: "bg2.jpg", sprite: "char2.png", text: "Now the background and character have changed!" },
+            { text: "This is the end of the example. Restart or exit." }
+        ];
+
+        let currentScene = 0;
+        let bg = document.getElementById("background");
+        let sprite = document.getElementById("sprite");
+
+
+        function startGame() {
+    // Only reset currentScene to 0 if it hasn't been set by loadGame
+    if (currentScene === undefined) {
+        currentScene = 0; // Reset scene index if not already set
+    }
+
+    document.getElementById("start-screen").classList.add("hidden");
+    document.getElementById("menu").classList.remove("hidden");
+    document.getElementById("text-box").classList.remove("hidden");
+    document.getElementById("finish-buttons").classList.add("hidden");
+
+    // Remove end screen if it exists
+    let endScreen = document.getElementById("end-screen");
+    if (endScreen) endScreen.remove();
+
+    // Ensure game-container is still interactive
+    document.getElementById("game-container").onclick = nextScene;
+
+    showScene(); // Show the scene based on the current state of currentScene
+}
+
+
+
+
+        function showScene() {
+            let scene = scenes[currentScene];
+
+            if (scene.bg) {
+                bg.src = scene.bg;
+                bg.classList.remove("hidden");
+            }
+
+            if (scene.sprite) {
+                sprite.src = scene.sprite;
+                sprite.classList.remove("hidden");
+            }
+
+            typeText(scene.text);
+        }
+
+
+        let typingTimeout;
+        let isTyping = false;
+        
+
+
+function typeText(text, callback) {
+    let box = document.getElementById("text-box");
+    box.innerHTML = "";
+    let i = 0;
+    isTyping = true; // Mark as typing
+
+    if (typingTimeout) clearTimeout(typingTimeout);
+
+    function typing() {
+        if (i < text.length) {
+            box.innerHTML += text[i];
+            i++;
+            typingTimeout = setTimeout(typing, 25); // Faster speed
+        } else {
+            isTyping = false; // Mark as done
+            if (callback) callback();
+        }
+    }
+
+    typing();
+
+    document.getElementById("game-container").onclick = function () {
+        if (isTyping) {
+            clearTimeout(typingTimeout);
+            box.innerHTML = text; // Show full text instantly
+            isTyping = false;
+            if (callback) callback();
+        } else {
+            nextScene(); // Proceed to next scene when fully typed
+        }
+    };
+}
+
+
+
+function nextScene() {
+    if (currentScene < scenes.length - 1) {
+        currentScene++;
+        showScene();
+    } else {
+        // Unhide the finish buttons and prevent adding them again
+        document.getElementById("finish-buttons").classList.remove("hidden");
+        
+        // Hide the game content if it's the end of the game
+        document.getElementById("game-container").onclick = null; // Disable click
+    }
+}
+
+
+function saveGame(slot) {
+    const gameData = {
+        scene: currentScene,
+        // Optionally, you could store more state here like sprites, text, etc.
+    };
+
+    localStorage.setItem(`savedGameSlot${slot}`, JSON.stringify(gameData));
+    const saveMessage = document.getElementById("save-message");
+    saveMessage.classList.remove("hidden");
+    saveMessage.textContent = `Game saved to Slot ${slot}`;
+}
+
+function loadGame(slot) {
+    const savedData = localStorage.getItem(`savedGameSlot${slot}`);
+
+    if (savedData !== null) {
+        const gameData = JSON.parse(savedData);
+        currentScene = gameData.scene;
+
+        startGame();
+        closeLoadOverlay();
+    } else {
+        alert(`No saved game in Slot ${slot}`);
+    }
+}
+
+
+function openSaveOverlay() {
+    document.getElementById("save-overlay").classList.remove("hidden");
+    document.getElementById("game-container").classList.add("hidden");
+}
+
+// Function to open the load overlay
+function openLoadOverlay() {
+    document.getElementById("load-overlay").classList.remove("hidden");
+    document.getElementById("game-container").classList.add("hidden");
+}
+
+// Function to close the save overlay
+function closeSaveOverlay() {
+    document.getElementById("save-overlay").classList.add("hidden");
+    document.getElementById("save-message").classList.add("hidden");
+    document.getElementById("game-container").classList.remove("hidden");
+}
+
+// Function to close the load overlay
+function closeLoadOverlay() {
+    document.getElementById("load-overlay").classList.add("hidden");
+    document.getElementById("game-container").classList.remove("hidden");
+}
+
+
+function promptSaveGame() {
+    openSaveOverlay();
+}
+
+// Call this function when you want to display the load prompt
+function promptLoadGame() {
+    openLoadOverlay();
+}
+
+
+        function exitGame() {
+        document.getElementById("exit-overlay").classList.remove("hidden");
+}
+
+
+function closeExitOverlay() {
+    document.getElementById("exit-overlay").classList.add("hidden");
+}
+
+function exitToStartScreen() {
+    // Hide the game content (including sprite, text box, etc.)
+    document.getElementById("text-box").classList.add("hidden");
+    document.getElementById("menu").classList.add("hidden");
+    document.getElementById("finish-buttons").classList.add("hidden"); // Hide finish buttons
+    
+    // Show the start screen again
+    document.getElementById("start-screen").classList.remove("hidden");
+
+    
+    bg.classList.add("hidden");
+    sprite.classList.add("hidden");
+    
+
+    // Reset event listeners and game state
+    document.getElementById("game-container").onclick = null; // Remove the click listener to prevent issues
+    currentScene = 0; // Reset the scene index to the start
+    closeExitOverlay()
+
+}
+
+
+
+    </script>
+
+</body>
+</html>

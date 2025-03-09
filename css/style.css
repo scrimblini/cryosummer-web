@@ -14,6 +14,18 @@ body, html {
     color:#dfe7ef
 }
 
+button {
+    background-color: #3194fc;
+    color:black;
+    padding:5px;
+    margin-top:10px;
+    border:none;
+}
+button:hover {
+    background-color: #ffff01;
+}
+
+
 a {
     text-decoration: none;
     color:#dfe7ef;
@@ -31,7 +43,7 @@ a:active, .nav-link:active {
 h1, h2, h3 {
     font-family: "Fugaz One", serif;
 }
-p, .navbar-nav, footer {
+p, .navbar-nav, form, footer, #game-container {
     font-family: "Quantico", serif;
 }
 
@@ -119,13 +131,17 @@ p, .navbar-nav, footer {
     width:100%;
 }
 
+.normalbox {
+    margin:0 auto;
+    background-color: black;
+    color:white;
+}
+
 .smallbox {
     display: flex;
     margin:0 auto;
     background-color: black;
     color:white;
-    align-items: center;
-    justify-content: center;
     max-width: 800px;
     min-width:700px;
 }
@@ -255,6 +271,85 @@ p, .navbar-nav, footer {
 }
 
 
+#main-menu {
+    background-image:url(../img/bginwsparkle.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#game-container {
+    width: 640px;
+    height: 480px;
+    background-image: url(../img/bginwsparkle.png);
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    margin:0 auto;
+}
+
+#start-screen, #finish-buttons {
+    text-align: center;
+    margin-top:50%;
+}
+
+#background {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+#sprite {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    max-height: 80%;
+}
+
+#text-box {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px;
+    font-size: 18px;
+}
+
+#menu {
+    display: flex;
+    justify-content:center;
+    padding: 5px;
+}
+#menu button {
+    margin:5px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+#exit-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.overlay-content {
+    background: black;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
 
 
 
@@ -269,9 +364,12 @@ p, .navbar-nav, footer {
     text-align: center;
   }
 
+footer {
+    
+    text-align: center;
+}
 
 footer a {
-    margin-left: 5px;
     color: #3194fc;
 }
 
@@ -311,12 +409,9 @@ footer a:hover {
     .smallbox {
         flex-wrap: wrap;
         flex-direction: column;
-        max-width: 400px;
         min-width: 0;
-    }
-
-    .smallbox .descbox {
-        max-width: 200px;
+        margin:10px;
+        
     }
 
     .smallbox img {
@@ -324,6 +419,32 @@ footer a:hover {
         text-align: center;
     }
 
+    #game-container {
+        width: 95vw;  /* Use more screen space on smaller devices */
+        height: 70vh; /* Adjust height for better fit */
+    }
+
+    #text-box {
+        font-size: 14px; /* Make text smaller for readability */
+        padding: 10px;
+    }
+
+    #sprite {
+        max-height: 80%;
+        height: auto;
+        position: absolute;
+        bottom: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    #background {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+    }
+    
     .newsbox {
         height:auto;
         overflow-y:hidden;
