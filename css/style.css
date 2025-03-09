@@ -158,10 +158,12 @@ p, .navbar-nav, form, footer, #game-container {
 
 .newsbox {
     max-width:800px;
+    max-height:100vh;
     background-color: #8e93ec;
     color:black;
     margin:0 auto;
-    padding:20px;
+    padding:100px 20px 0 20px;
+    overflow-y:auto;
 }
 
 
@@ -400,6 +402,11 @@ footer a:hover {
 }
 
 
+.tinytext {
+    font-size:0.9em;
+    opacity:0.5;
+}
+
 
 #windowP {
     color:#cf3a63;
@@ -472,6 +479,7 @@ footer a:hover {
         text-align: center;
     }
 
+
     #game-container {
         width: 95vw;  /* Use more screen space on smaller devices */
         height: 70vh; /* Adjust height for better fit */
@@ -501,7 +509,6 @@ footer a:hover {
     .newsbox {
         width:100%;
         height:100%;
-        padding-top:100px;
         overflow-y:scroll;
     }
 
