@@ -391,11 +391,11 @@ footer a:hover {
     width: 200px;
     height: 200px;
     background-size: cover;
-    background-image: url(../img/info/foto1.png);
+    background-image: url(../about/img/foto1.png);
     border-radius: 100%;
 }
 .imgcircle:hover {
-    background-image: url(../img/info/foto2.png);
+    background-image: url(../about/img/foto2.png);
     transition:0.5s;
 }
 
@@ -455,7 +455,6 @@ footer a:hover {
 
     .itembtn {
         max-width: 250px;
-        min-width: none;
         margin:10px;
     }
 
