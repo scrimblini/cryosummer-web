@@ -38,8 +38,9 @@ let scenes = [
         let bg = document.getElementById("background");
         let sprite = document.getElementById("sprite");
 
-        let currentBg = ""; // Store the current background
-        let currentSprite = ""; // Store the current sprite
+        //stores current bg and sprites for proper save/load
+        let currentBg = "";
+        let currentSprite = "";
 
 
 function startGame() {
@@ -53,17 +54,13 @@ function startGame() {
     document.getElementById("text-box").classList.remove("hidden");
     document.getElementById("finish-buttons").classList.add("hidden");
 
-    // Remove end screen if it exists
-    let endScreen = document.getElementById("end-screen");
-    if (endScreen) endScreen.remove();
-    
-
-    // Ensure game-container is still interactive
+    //enables interactivity by clicking anywhere in the box
     document.getElementById("game-container").onclick = nextScene;
 
     showScene(); // Show the scene based on the current state of currentScene
 }
 
+//for restart button
 function restartGame() {
     currentScene = 0;
     startGame();
@@ -73,35 +70,31 @@ function restartGame() {
 
         function showScene() {
             let scene = scenes[currentScene];
-            console.log("Current Scene:", currentScene);
-    console.log("Background:", scene.bg, "Sprite:", scene.sprite);
 
             if (scene.bg) {
         currentBg = scene.bg; // Update current background
         bg.src = currentBg;
         bg.classList.remove("hidden");
     } else if (currentBg) {
-        // If no background defined, use the previous one
+        // If no background defined, use the previous one (for proper load in case bg/sprite is not defined in currentScene)
         bg.src = currentBg;
         bg.classList.remove("hidden");
     }
 
+    //does the same for sprite
     if (scene.sprite) {
-        currentSprite = scene.sprite; // Update current sprite
+        currentSprite = scene.sprite;
         sprite.src = currentSprite;
         sprite.classList.remove("hidden");
     } else if (currentSprite) {
-        // If no sprite defined, use the previous one
         sprite.src = currentSprite;
         sprite.classList.remove("hidden");
     }
 
+    //textbox typing effect
             typeText(scene.text);
 
-            
         }
-        
-
 
         let typingTimeout;
         let isTyping = false;
@@ -129,26 +122,26 @@ function typeText(text, callback) {
 
     typing();
 
+    //skips typing animation when clicked
     document.getElementById("game-container").onclick = function () {
         if (isTyping) {
             clearTimeout(typingTimeout);
-            box.innerHTML = text; // Show full text instantly
+            box.innerHTML = text;
             isTyping = false;
             if (callback) callback();
         } else {
-            nextScene(); // Proceed to next scene when fully typed
+            nextScene();
         }
     };
 }
 
 
-
+//continues showing scenes until it reaches the end, then hides all scene elements and unhides the restart/exit buttons
 function nextScene() {
     if (currentScene < scenes.length - 1) {
         currentScene++;
         showScene();
     } else {
-        // Unhide the finish buttons and prevent adding them again
         document.getElementById("finish-buttons").classList.remove("hidden");
         
         document.getElementById("text-box").classList.add("hidden");
@@ -158,12 +151,12 @@ function nextScene() {
     }
 }
 
-
+//save/load in slots
 function saveGame(slot) {
     const gameData = {
-        scene: currentScene,  // Store the current scene
-        currentBg: currentBg, // Save the current background
-        currentSprite: currentSprite // Save the current sprite
+        scene: currentScene,
+        currentBg: currentBg,
+        currentSprite: currentSprite
     };
 
     localStorage.setItem(`savedGameSlot${slot}`, JSON.stringify(gameData));
@@ -173,7 +166,7 @@ function saveGame(slot) {
 }
 
 function loadGame() {
-    let saved = localStorage.getItem("savedGameSlot1"); // Example: Load from Slot 1
+    let saved = localStorage.getItem("savedGameSlot1");
     if (saved !== null) {
         const gameData = JSON.parse(saved);
         currentScene = gameData.scene;
@@ -193,20 +186,17 @@ function openSaveOverlay() {
     document.getElementById("game-container").classList.add("hidden");
 }
 
-// Function to open the load overlay
 function openLoadOverlay() {
     document.getElementById("load-overlay").classList.remove("hidden");
     document.getElementById("game-container").classList.add("hidden");
 }
 
-// Function to close the save overlay
 function closeSaveOverlay() {
     document.getElementById("save-overlay").classList.add("hidden");
     document.getElementById("save-message").classList.add("hidden");
     document.getElementById("game-container").classList.remove("hidden");
 }
 
-// Function to close the load overlay
 function closeLoadOverlay() {
     document.getElementById("load-overlay").classList.add("hidden");
     document.getElementById("game-container").classList.remove("hidden");
@@ -217,14 +207,13 @@ function promptSaveGame() {
     openSaveOverlay();
 }
 
-// Call this function when you want to display the load prompt
 function promptLoadGame() {
     openLoadOverlay();
 }
 
 
-        function exitGame() {
-        document.getElementById("exit-overlay").classList.remove("hidden");
+    function exitGame() {
+    document.getElementById("exit-overlay").classList.remove("hidden");
 }
 
 
@@ -232,23 +221,20 @@ function closeExitOverlay() {
     document.getElementById("exit-overlay").classList.add("hidden");
 }
 
+
 function exitToStartScreen() {
-    // Hide the game content (including sprite, text box, etc.)
+    //hides the game elements and unhides the start screen
     document.getElementById("text-box").classList.add("hidden");
     document.getElementById("menu").classList.add("hidden");
-    document.getElementById("finish-buttons").classList.add("hidden"); // Hide finish buttons
-    
-    // Show the start screen again
-    document.getElementById("start-screen").classList.remove("hidden");
-
-    
+    document.getElementById("finish-buttons").classList.add("hidden");
     bg.classList.add("hidden");
     sprite.classList.add("hidden");
     
+    document.getElementById("start-screen").classList.remove("hidden");
 
-    // Reset event listeners and game state
-    document.getElementById("game-container").onclick = null; // Remove the click listener to prevent issues
-    currentScene = 0; // Reset the scene index to the start
+
+    document.getElementById("game-container").onclick = null; //removes click listener (so you can only press the buttons)
+    currentScene = 0;
     closeExitOverlay()
 
 }

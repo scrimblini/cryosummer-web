@@ -127,9 +127,6 @@ p, .navbar-nav, form, footer, #game-container {
     max-width:500px;
 }
 
-.contregular {
-    width:100%;
-}
 
 .normalbox {
     margin:0 auto;
@@ -378,6 +375,20 @@ footer a, h3 a, .windowcontent p a {
 
 footer a:hover {
     color: black;
+}
+
+
+
+.imgcircle {
+    width: 200px;
+    height: 200px;
+    background-size: cover;
+    background-image: url(../img/info/foto1.png);
+    border-radius: 100%;
+}
+.imgcircle:hover {
+    background-image: url(../img/info/foto2.png);
+    transition:0.5s;
 }
 
 
