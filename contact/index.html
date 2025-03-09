@@ -42,7 +42,7 @@
             <h1>Contact Us</h1>
         </div>
         <div class="p-2">
-        <form method="post" action="send_email.php" id="formthing" class="nlform" novalidate>
+        <form method="POST" action="send_email.php" id="formthing" class="nlform" novalidate>
             <div class="p-5 normalbox">
                 <label class="form-label" for="name">Name</label>
                 <input class="form-control" type="text" id="name" name="name">
@@ -74,13 +74,13 @@
 
             <input type="hidden" id="subject" name="subject" value="Positive Feedback">
 
-                <button type="button" onclick="submitData()">Submit</button>
+                <button type="submit">Submit</button>
             </div>
         </form>
         <div class="fullscreen-overlay" id="popupWindow">
             <div class="windowcontent">
               <h2 id="windowTitl">Error</h2>              
-              <p id="windowP">Please enter the corresponding data in the required fields.</p>
+              <p id="windowP"></p>
               <button type="button" onclick="closeWindow()">Close</button>
             </div>
         </div>

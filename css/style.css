@@ -14,15 +14,17 @@ body, html {
     color:#dfe7ef
 }
 
-button {
+button, .itembtn {
     background-color: #3194fc;
     color:black;
     padding:5px;
     margin:10px;
     border:none;
 }
-button:hover {
+button:hover, .itembtn:hover {
     background-color: #ffff01;
+    cursor:default;
+    transition:0.5s;
 }
 
 
@@ -397,6 +399,14 @@ footer a:hover {
     transition:0.5s;
 }
 
+
+
+#windowP {
+    color:#cf3a63;
+    text-align: left;
+    font-weight: bold;
+    font-size: 1.2em;
+}
 
 
 @media only screen and (max-width:768px){
