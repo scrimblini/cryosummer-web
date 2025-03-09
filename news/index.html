@@ -38,10 +38,59 @@
     
 
     <div class="cont-adapt">
-        <div class="m-5 p-2">
-            <div class="contregular">
+        <div class="d-flex m-5 p-2 flex-column">
                 <h1>News & Updates</h1>
-            <div class="newsbox p-4">
+
+
+                <div class="horizbtn">
+
+                <button class="itembtn p-5" onclick="showPopup('popup1')">
+                    <h2>More Plans</h2>
+                </button>
+                <button class="itembtn p-5" onclick="showPopup('popup2')">
+                    <h2>Future Plans</h2>
+                </button>
+                <button class="itembtn p-5" onclick="showPopup('popup3')">
+                    <h2>Brief Introduction</h2>
+                </button>
+                </div>
+
+                <div class="fullscreen-overlay" id="popup1">
+                        <div class="newsbox">
+                        <h2>More Upcoming Plans</h2>
+                        <p>Hello guys. So as this sort of blew up and I've got a lot of people asking about the game's release date and how they love my characters, I've decided itd be nice if they could own merch and goodies of it if the kickstarter ever reaches its goal. I've planned for it to be kind of like a pre-registration thing, but after that and if the game reaches enough audience we could partner up with Makeship to bring you some plushies or sell shirt designs through Redbubble.
+                            <br>
+                            There'll be a <a href="../shop/index.html">section</a> in this site that gives you a sneak peek of what might be in store if that ever happens, so keep an eye out for that!
+                            <br>
+                            <br>
+                            Again, thank you for all the support, I could not be more happy with how this project is coming along. Love you all.</p>
+                            
+                            
+                            <button onclick="closePopup('popup1')">Close</button>
+                        </div>
+                </div>
+
+                <div class="fullscreen-overlay" id="popup2">
+                        <div class="newsbox">
+                            <h2>Future Plans</h2>
+                            <p>Hey! So, since the web demo thingy is done, ive already got a few more things planned:
+                                <br>
+                                -As stated in the previous update, the original intended format was a rpgmaker game, which adds a lot of more elements and interactivity to it. though I believe it possible to be done with javascript as a web version, I am short on time and would rather start working on the rpgmaker version first and leave the current demo as "the demo" for the game. In a future time, though, I may update it. if I have enough time.
+                                <br>
+                                Here's how the mechanics would work:
+                                <br>
+                                -Though theres still the vn element in dialogue of the character and cgs shown in the demo, it would alternate between that and a screen where the character's sprites (in rpgmaker fashion) move and interact with the environment, just like any rpgmaker game would. The true game would start just after (spoilers btw if you havent checked the demo) Bozo realizing theyre in the middle of nowhere, where you'd have to walk around through the neverending snow map in a very specific pattern <a href="https://yumenikki.fandom.com/wiki/Snow_World">just like its done in a certain other game</a>, until you find these abandoned, run down buildings where it'll prompt you to interact to continue the game. It'll be kind of like a puzzle (Not like papyrus' puzzles though... This will be a proper one I swear)
+                                <br>
+                                <br>
+                                Hope you guys are staying up to date!</p>
+
+                            <button onclick="closePopup('popup2')">Close</button>
+                        </div>
+                </div>
+                
+                <div class="fullscreen-overlay" id="popup3">
+                        <div class="newsbox">
+                            
                 <h2>Brief Introduction</h2>
                 <p>Hello! First of all, thanks to everyone for keeping up with this project. I would like to elaborate about how this whole thing came to be in the first place:
                 <br>
@@ -51,10 +100,18 @@
                 <br>
                 Initially, I had planned this to be in the format of an animated webseries or a webcomic. Though an animated series sounds cool, it would require extra effort and I'm not that good at animating or at managing my own time. the webcomic idea still remained in my head but it never really came to be, cramming detailed scenes into small panels also seemed really tedious. I figured that a more fun way to put this story would be by making it into a game, even though i even get a little self conscious about my skills regarding that sometimes. but one day, i can hope that itll be finally polished and ready for the public.
                 <br>
-                Until then, I'll keep you guys updated as long as you choose to subscribe or follow any of the social media listed <a>here</a>.
+                <br>
+                Until then, I'll keep you guys updated as long as you choose to subscribe or follow any of the social media listed <a href="../socials/index.html">here</a>.
                 </p>
-            </div>
-            </div>
+                            <button onclick="closePopup('popup3')">Close</button>
+                        </div>
+                                          
+                </div>
+
+
+
+
+            
         </div>
 
     </div>
@@ -63,5 +120,6 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="../js/func3.js"></script>
 </body>
 </html>
